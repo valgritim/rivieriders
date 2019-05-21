@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %} 
+    {% include('./partials/header.html.twig') %}
+    <div class="container">
+        <h1 class="h2 my-5">Moto référence {{ moto.id }}</h1>
+        <p>Modèle: {{ moto.model }}</p>
+        <p>Prix: {{ moto.price}} &euro;</p>
+
+    </div>
+
+    
+{% endblock %}
