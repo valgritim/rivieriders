@@ -12,7 +12,7 @@
             <hr class="my-4">
             <p class="text-center"><img id="logo_small" src="{{asset("images/logo.png")}}" alt="Logo Harley Davidson" class="img-fluid"></p>
             <p class="lead text-center">
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                <a class="btn btn-primary btn-lg" href="#" role="button">A propos de nous</a>
             </p>
         </div>
         <h1 class="my-5 text-center">Nos motos</h1>       
@@ -20,19 +20,19 @@
             <div class="row">
                 
                 {% for result in results %} 
-                <div class="col">  
-                    <div class="card mb-5 ml-3">
-                        <h3 class="card-header">Harley Davidson Ref.{{ result.id}}</h3>
+                <div class="col mb-5 d-flex">  
+                    <div class="card ml-3 card-moto">
+                        <h3 class="card-header orange h4">{{ result.model | upper }} &reg;</h3>
                         <div class="card-body">
-                            <h5 class="card-title">Modèle: {{ result.model }}</h5>
-                            <h6 class="card-subtitle text-muted">Prix: {{ result.price }} &euro;/jour</h6>
+                            <span class="card-subtitle text-muted py-1">A PARTIR DE</span>                            
+                            <span class="card-subtitle price">&nbsp; {{ result.price }} &euro; <sup>TTC</sup>/jour </span>  
                         </div>
                         <img style="height: 200px; width: 100%; display: block;" src="images/{{ result.coverImg }}" alt="Card image">
                         <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text">{{ result.description }}.</p>
                         </div>
                         <div class="card-body">
-                            <a href="{{path("show", {"id": result.id })}}" class="card-link btn btn-primary">Voir la moto</a>
+                            <a href="{{path("show_moto", {"id": result.id, "slug": result.slug })}}" class="card-link btn btn-primary">Voir la moto</a>
                            
                         </div>
                        

@@ -4,14 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Moto;
 use App\Repository\MotoRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/home", name="home")
+     * @Route("/", name="home")
      */
     public function index(MotoRepository $repo)
     {
@@ -25,14 +25,20 @@ class HomeController extends AbstractController
 
     /**
      * retourne une vue du produit cliqué
-     *@Route("/show/{id}", name="show")
+     *@Route("/show/{slug}-{id}", name="show_moto", requirements={"slug": "[a-z0-9\-]*"})
      * @return Response
      */
-    public function show(MotoRepository $repo, $id){
-
-        $result = $repo->find($id);
+    public function show(Moto $moto, $slug)
+    {
+        if($moto->getSlug() !== $slug){
+            return $this->redirectToRoute("show_moto", [
+                'id' => $moto->getId(),
+                'slug' => $moto->getSlug()
+            ], 301);
+        }    
+        
         return $this->render('home/show.html.twig', [
-            'moto' => $result
+            'moto' => $moto
         ]);
     }
 
@@ -47,10 +53,10 @@ class HomeController extends AbstractController
 
     /**
      * Permet de rajouter une moto dans la DB
-     *@Route("addMoto", name="add_moto")
+     *@Route("/addMoto", name="add_moto")
      * @return Response
      */
-    public function addMoto(EntityManagerInterface $manager){
+    public function addMoto(ObjectManager $manager){
             
             $sport = new Moto();
             $softail = new Moto();
@@ -67,4 +73,5 @@ class HomeController extends AbstractController
 
         return $this->render('add.html.twig');
     }
+       
 }

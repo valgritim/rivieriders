@@ -1,8 +1,37 @@
 .card{
     width: 20em;
-}
-#logo_small{
-
     
+}
+
+#logo_small{    
     height: 12em;
+}
+
+.card>.orange{
+
+    color: orange;
+    font-weight: 500;
+}
+.card-moto{    
+    padding: 10px;
+}
+.card-moto:hover{
+    width: 20em;   
+    box-sizing: border-box;
+    border: 3px solid orange;   
+    transition: border 0.5s;     
+      
+}
+
+.text-muted{
+    border-bottom: 1px solid silver;
+    border-top: 1px solid silver;
+}
+.price{
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: grey;
+}
+li.desc{
+    list-style-type: square;
 }
