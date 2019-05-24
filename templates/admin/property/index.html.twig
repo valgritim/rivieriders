@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+
+            {% for message in app.flashes("success") %}
+                <span class="alert alert-success mb-5">{{ message }}</span>
+            {% endfor %}
+        <h1 class="my-4">Gérer les motos disponibles</h1>
+            
+        <table class="table table-hover table-light">
+            <thead>
+                <tr>
+                    <th >Id</th>
+                    <th >Modèle</th>
+                    <th >Moteur</th>
+                    <th >Réservoir</th>
+                    <th >Hauteur de selle</th>
+                    <th >Poids</th>
+                    <th >Prix</th>
+                    <th >Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for property in properties %}
+                <tr>
+                    <td>{{ property.id }}</td>
+                    <td>{{property.model}}</td>
+                    <td>{{property.moteur}}</td>
+                    <td>{{property.tank}}</td>
+                    <td>{{property.saddleheight}}</td>
+                    <td>{{property.weight}}</td>
+                    <td>{{property.price}} &euro;</td>
+                    
+                    <td>
+                        <a href="{{ path("admin_property_edit", {"id": property.id }) }}" class="btn btn-success">Editer</a>
+                        <a href="{{ path("admin_property_delete", {"id": property.id })}}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="text-right">
+            <a href="{{ path("admin_property_create")}}" class="btn btn-primary">Créer une nouvelle fiche</a>
+        </div>    
+    </div>
+
+{% endblock %}

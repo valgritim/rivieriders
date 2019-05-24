@@ -5,9 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Cocur\Slugify\Slugify;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MotoRepository")
+ * @UniqueEntity("model")
  */
 class Moto
 {
@@ -21,6 +24,7 @@ class Moto
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Ce champ ne peut pas être vide !")
+     * @Assert\Length(min=7, max= 50)
      */
     private $model;
 
@@ -43,6 +47,7 @@ class Moto
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\Type("float")
      */
     private $tank;
 
@@ -53,16 +58,19 @@ class Moto
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Regex("/^[0-9]{3}$/")
      */
     private $saddleheight;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Regex("/^[0-9]{3}$/")
      */
     private $weight;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Regex("/^[0-9]{3}$/")
      */
     private $description;
     

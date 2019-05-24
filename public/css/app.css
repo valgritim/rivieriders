@@ -23,7 +23,7 @@
       
 }
 
-.text-muted{
+.text-muted,.text-white{
     border-bottom: 1px solid silver;
     border-top: 1px solid silver;
 }
@@ -32,6 +32,28 @@
     font-size: 1.5rem;
     color: grey;
 }
+.price-show{
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #fff;
+}
 li.desc{
     list-style-type: square;
+}
+.jumbotron{
+    background-image: url("../images/ride.jpg")!important;
+    color: #fff;
+}
+#showJumbo{
+    background-size: cover;
+}
+a#Jumbo{
+    -webkit-box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75)!important;
+    -moz-box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75)!important;
+    box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75)!important;
+}
+img.img-show{
+    -webkit-box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75)!important;
+    -moz-box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75)!important;
+    box-shadow: 10px 10px 18px 0px rgba(0,0,0,0.75)!important;
 }

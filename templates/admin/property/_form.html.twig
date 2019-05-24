@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+        <h2 class="h3 mt-3">Eléments généraux</h2>
+            <div class="row mb-5">
+                <div class="col-md-3">{{ form_row(form.model) }}</div>
+                <div class="col-md-3">{{ form_row(form.price) }}</div>
+                <div class="col-md-6">{{ form_row(form.description) }}</div>
+                
+            </div>
+            <h2 class="h3 mt-3">Eéements techniques</h2>
+            <div class="row mb-5">                
+                <div class="col-md-4">{{ form_row(form.moteur)}}</div>
+                <div class="col-md-4">{{ form_row(form.tank)}}</div>
+                <div class="col-md-4">{{ form_row(form.saddleheight)}}</div>
+                <div class="col-md-4">{{ form_row(form.weight)}}</div>
+                <div class="col-md-4 mt-5">{{ form_widget(form.saddlebags)}}</div>
+            </div>
+            <h2 class="h3 mt-3">Images</h2>
+            <div class="row mb-5">
+                <div class="col-md-4">{{ form_widget(form.coverImg)}}</div>
+                <button class="btn btn-primary">{{ button | default("Enregistrer")}}</button>
+            </div>                       
+        
+            
+        {{ form_end(form)}}
