@@ -73,7 +73,19 @@ class Moto
      * @Assert\Regex("/^[0-9]{3}$/")
      */
     private $description;
-    
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $passenger;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="motos")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+      
     public function getSlug(): ?string
     {
         return (new Slugify())->slugify($this->model); 
@@ -193,4 +205,29 @@ class Moto
 
         return $this;
     }
+
+    public function getPassenger(): ?bool
+    {
+        return $this->passenger;
+    }
+
+    public function setPassenger(?bool $passenger): self
+    {
+        $this->passenger = $passenger;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+    
 }

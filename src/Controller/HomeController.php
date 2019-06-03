@@ -3,23 +3,29 @@
 namespace App\Controller;
 
 use App\Entity\Moto;
+use App\Entity\MotoSearch;
+use App\Form\MotoSearchType;
 use App\Repository\MotoRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\Common\Persistence\ObjectManager;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
      */
-    public function index(MotoRepository $repo)
+    public function index(MotoRepository $repo, Request $request)
     {
-        
-        $results = $repo->findAll();
+        $search = new MotoSearch();
+        $form = $this->createForm(MotoSearchType::class, $search);
+        $form->handleRequest($request);
 
+        $results = $repo->findAllQuery($search);
         return $this->render('home/index.html.twig', [
-            'results' => $results
+            'results' => $results,
+            'form' => $form->createView()
         ]);
     }
 
@@ -36,9 +42,10 @@ class HomeController extends AbstractController
                 'slug' => $moto->getSlug()
             ], 301);
         }    
-        
+       
         return $this->render('home/show.html.twig', [
             'moto' => $moto
+            
         ]);
     }
 

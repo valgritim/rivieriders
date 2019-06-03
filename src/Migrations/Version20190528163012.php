@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190522121137 extends AbstractMigration
+final class Version20190528163012 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,8 @@ final class Version20190522121137 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE moto ADD moteur VARCHAR(255) DEFAULT NULL, ADD tank DOUBLE PRECISION NOT NULL, ADD saddlebags TINYINT(1) DEFAULT NULL, ADD saddleheight INT DEFAULT NULL, ADD weight INT NOT NULL');
+        $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE moto (id INT AUTO_INCREMENT NOT NULL, model VARCHAR(255) NOT NULL, price INT NOT NULL, cover_img VARCHAR(255) NOT NULL, moteur VARCHAR(255) DEFAULT NULL, tank DOUBLE PRECISION NOT NULL, saddlebags TINYINT(1) DEFAULT NULL, saddleheight INT DEFAULT NULL, weight INT NOT NULL, description LONGTEXT DEFAULT NULL, passenger TINYINT(1) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +31,7 @@ final class Version20190522121137 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE moto DROP moteur, DROP tank, DROP saddlebags, DROP saddleheight, DROP weight');
+        $this->addSql('DROP TABLE category');
+        $this->addSql('DROP TABLE moto');
     }
 }

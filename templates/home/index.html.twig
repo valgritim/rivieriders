@@ -7,8 +7,12 @@
     
     <div class="container">
         <div class="jumbotron mt-5">
+        <div class="text-center">
+          <img src="{{asset("images/rentals.png")}}" alt="rentals" id="rentalsImg">
+       </div>
             <h1 class="display-5">Hi Bikers!</h1>
             <p class="lead">Vivez une expérience inoubliable en parcourant la French Riviera sur une moto mythique...Enfourchez une légende !</p>
+            
             <hr class="my-4">
             <p class="text-center"><img id="logo_small" src="{{asset("images/logo.png")}}" alt="Logo Harley Davidson" class="img-fluid"></p>
             <p class="lead text-center">
@@ -16,7 +20,7 @@
             </p>
         </div>
         <h1 class="my-5 text-center">Nos motos</h1>       
-                 
+        
             <div class="row">
                 
                 {% for result in results %} 
@@ -29,7 +33,7 @@
                         </div>
                         <img style="height: 200px; width: 100%; display: block;" src="images/{{ result.coverImg }}" alt="Card image">
                         <div class="card-body">
-                            <p class="card-text">{{ result.description }}.</p>
+                            <p class="card-text">{{ result.description | nl2br }}</p>
                         </div>
                         <div class="card-body">
                             <a href="{{path("show_moto", {"id": result.id, "slug": result.slug })}}" class="card-link btn btn-primary">Voir la moto</a>
@@ -38,10 +42,31 @@
                        
                     </div>  
                 </div> 
-                {% endfor %}           
+                {% endfor %}         
                 
-            </div>
-            
+            </div>            
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Rechercher un modèle</h5>
+           
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-primary">Rechercher</button>
+            {{ form_end(form) }}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
     </div>
 
 {% endblock %}

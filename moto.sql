@@ -38,6 +38,7 @@ CREATE TABLE `moto` (
   `saddlebags` tinyint(1) DEFAULT NULL,
   `saddleheight` int(11) DEFAULT NULL,
   `weight` int(11) NOT NULL,
+  `passengers` tinyint(1) DEFAULT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -45,16 +46,16 @@ CREATE TABLE `moto` (
 -- Déchargement des données de la table `moto`
 --
 
-INSERT INTO `moto` (`id`, `model`, `price`, `cover_img`, `moteur`, `tank`, `saddlebags`, `saddleheight`, `weight`, `description`) VALUES
-(10, 'Fat Boy', 97, 'fat-boy.jpg', 'Milwaukee-Eigth', 18.9, 0, 675, 304, 'L\'icône custom Fat original qui avait tout changé et qui recommence. Finitions en chrome satiné. Pneu arrière trapu de 240 mm. Maintenant disponible avec le moteur Milwaukee-Eight™ 107 ou 114 Big Twin pour bénéficier du Fat Boy® le plus musclé, le plus irrésistible de notre histoire.\r\n'),
-(11, 'Road King Custom', 115, 'road-king-custom.jpg', 'Milwaukee-Eigth', 22.7, 1, 695, 355, 'Si vous voulez savoir ce que signifie réellement dominer la route, prenez le guidon mini-ape du ROAD KING® Special en main et ouvrez les gaz de son moteur Milwaukee-Eight® 107. '),
-(12, 'Raod King Classic', 117, 'Road-King-classic.jpg', 'Milwaukee-Eigth', 22.7, 1, 715, 362, 'NON SEULEMENT VOUS OUBLIEREZ LE JOUR DE LA SEMAINE, MAIS VOUS OUBLIEREZ AUSSI L\'ANNÉE !\r\n\r\nFlancs blancs, roues à bâtons et ajouts de sacoches en cuir. La Road King® Classic mérite réellement son nom.\r\n'),
-(13, 'Iron 883', 97, 'sportster-iron883.jpg', 'Evolution', 17, 1, 760, 247, 'Un style authentique et agressif qui puise dans l\'innovation. Une machine qui ne demande qu\'à briller. Elle est prête à s\'emparer de la rue.\r\n'),
-(14, 'Superlow', 85, 'sportster-superlow.jpg', 'Evolution', 17, 1, 705, 263, 'RIEN NE VOUS RAPPROCHE PLUS DE LA ROUTE.\r\n\r\nAvec son centre de gravité particulièrement bas, cette selle basse vous offrira une position parfaitement équilibrée et un regain de confiance. '),
-(15, 'H.D Street', 95, 'street-glide.jpg', 'Revolution X V-Twin', 13.1, 0, 765, 229, 'LA PARTIE DE PLAISIR COMMENCE QUAND LE FEU PASSE AU VERT\r\n\r\nAu cœur de la Dark Custom®, un moteur Revolution X™ V-Twin 750 cm³ à refroidissement liquide, tendu.'),
-(16, 'Street Rod', 87, 'street-rod.jpg', 'High Output revolution', 13.2, 0, 765, 229, 'POUR SE RÉVEILLER L\'ÂME.\r\n\r\nOffrez-vous une machine à la hauteur de vos désirs. Ne vous limitez pas. La nouvelle Street Rod® est conçue pour vous emporter jusqu\'à la limite.'),
-(17, 'Touring Electra', 124, 'touring-electra.jpg', 'Twin-cooled', 22.7, 1, 740, 398, 'Une moto épurée qui offre l’essentiel aux amateurs de Touring. Conçue pour que vous vous l’appropriez. '),
-(18, 'Breakout', 75, 'breakout.jpg', 'Milwaukee-Eigth', 13.2, 0, 665, 294, 'Le nouveau Breakout® reprend le concept de la machine musclée, longue et mince, pour la projeter en plein 21ème siècle.');
+INSERT INTO `moto` (`id`, `model`, `price`, `cover_img`, `moteur`, `tank`, `saddlebags`, `saddleheight`, `weight`, `passengers`,`description`) VALUES
+(10, 'Fat Boy', 97, 'fat-boy.jpg', 'Milwaukee-Eigth', 18.9, 0, 675, 304, 1, 'L\'icône custom Fat original qui avait tout changé et qui recommence. Finitions en chrome satiné. Pneu arrière trapu de 240 mm. Maintenant disponible avec le moteur Milwaukee-Eight™ 107 ou 114 Big Twin pour bénéficier du Fat Boy® le plus musclé, le plus irrésistible de notre histoire.\r\n',3),
+(11, 'Road King Custom', 115, 'road-king-custom.jpg', 'Milwaukee-Eigth', 22.7, 1, 695, 355, 0, 'Si vous voulez savoir ce que signifie réellement dominer la route, prenez le guidon mini-ape du ROAD KING® Special en main et ouvrez les gaz de son moteur Milwaukee-Eight® 107. ', 2),
+(12, 'Raod King Classic', 117, 'Road-King-classic.jpg', 'Milwaukee-Eigth', 22.7, 1, 715, 362, 1, 'NON SEULEMENT VOUS OUBLIEREZ LE JOUR DE LA SEMAINE, MAIS VOUS OUBLIEREZ AUSSI L\'ANNÉE !\r\n\r\nFlancs blancs, roues à bâtons et ajouts de sacoches en cuir. La Road King® Classic mérite réellement son nom.\r\n', 2),
+(13, 'Iron 883', 97, 'sportster-iron883.jpg', 'Evolution', 17, 1, 760, 247, 0, 'Un style authentique et agressif qui puise dans l\'innovation. Une machine qui ne demande qu\'à briller. Elle est prête à s\'emparer de la rue.\r\n', 1),
+(14, 'Superlow', 85, 'sportster-superlow.jpg', 'Evolution', 17, 1, 705, 263, 0, 'RIEN NE VOUS RAPPROCHE PLUS DE LA ROUTE.\r\n\r\nAvec son centre de gravité particulièrement bas, cette selle basse vous offrira une position parfaitement équilibrée et un regain de confiance.', 1),
+(15, 'H.D Street', 95, 'street-glide.jpg', 'Revolution X V-Twin', 13.1, 0, 765, 229, 1, 'LA PARTIE DE PLAISIR COMMENCE QUAND LE FEU PASSE AU VERT\r\n\r\nAu cœur de la Dark Custom®, un moteur Revolution X™ V-Twin 750 cm³ à refroidissement liquide, tendu.', 4),
+(16, 'Street Rod', 87, 'street-rod.jpg', 'High Output revolution', 13.2, 0, 765, 229, 1, 'POUR SE RÉVEILLER L\'ÂME.\r\n\r\nOffrez-vous une machine à la hauteur de vos désirs. Ne vous limitez pas. La nouvelle Street Rod® est conçue pour vous emporter jusqu\'à la limite.', 4),
+(17, 'Touring Electra', 124, 'touring-electra.jpg', 'Twin-cooled', 22.7, 1, 740, 398, 1,'Une moto épurée qui offre l’essentiel aux amateurs de Touring. Conçue pour que vous vous l’appropriez.', 2),
+(18, 'Breakout', 75, 'breakout.jpg', 'Milwaukee-Eigth', 13.2, 0, 665, 294, 1, 'Le nouveau Breakout® reprend le concept de la machine musclée, longue et mince, pour la projeter en plein 21ème siècle.', 3);
 
 --
 -- Index pour les tables déchargées

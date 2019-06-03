@@ -17,24 +17,53 @@
         </div>
     </div>
     <div class="container mt-5">  
-        <h2 class="h4">Les caractéristiques de {{ moto.model }} &reg;</h2>
+        
         <div class="row">
-             <ul>
-                <li class="desc">Moteur    : {{ moto.moteur }} &reg;</li>
-                <li class="desc">Réservoir : {{ moto.tank}} L</li>
-                <li class="desc">Hauteur de selle: {{ moto.saddleheight }} mm</li>
-                <li class="desc">Poids : {{ moto.weight }} Kg</li>
-                <li class="desc">Sacoches: {% if moto.saddlebags %}Oui 
-                            {% else %} Non
-                            {% endif %} 
-                </li>
-            </ul> 
-        </div> 
-        <a href="#" class="btn btn-primary">Nous contacter</a>                                 
-    </div> 
-                  
-           
-
-
-    
+            <div class="col-md-6">
+            <h2 class="h4">Les caractéristiques de {{ moto.model }} &reg;</h2>
+                <ul>
+                    <li class="desc">Catégorie    : {{ moto.category.name | capitalize }}</li>
+                    <li class="desc">Moteur    : {{ moto.moteur }} &reg;</li>
+                    <li class="desc">Réservoir : {{ moto.tank}} L</li>
+                    <li class="desc">Hauteur de selle: {{ moto.saddleheight }} mm</li>
+                    <li class="desc">Poids : {{ moto.weight }} Kg</li>
+                    <li class="desc">Sacoches: {% if moto.saddlebags %}Oui 
+                                {% else %} Non
+                                {% endif %} 
+                    </li>
+                    <li class="desc">Passager: {% if moto.passenger %}Oui 
+                                {% else %} Non
+                                {% endif %} 
+                    </li>
+                </ul>
+                <a href="#" class="btn btn-primary">Nous contacter</a> 
+            </div> 
+            <div class="col-md-6">
+                <h3 class="h5">NOS TARIFS COMPRENNENT : </h3>
+                    <p>Assurance, Alarme, kilométrage illimité, casques, antivols, combinaisons de pluie, Gardiennage de vos bagages, parking voiture.
+                       Essence : Non comprise.</p>
+                <h3 class="h5">CONDITIONS GÉNÉRALES</h3>
+                    <p>Les locations démarrent à partir du mois d’Avril jusqu’au mois d’Octobre – 50% d’accompte à la commande – Caution de 2000 € (réservation en CB) – Permis moto valide de + de 2 ans – Permis international si non résident français – Age minimum requis 25 Ans révolus – Expérience dans la conduite de motos lourdes –</p>
+                <h3 class="h5">PIÈCES À FOURNIR :</h3>
+                    <p>– Justificatif d’adresse et/ou de résidence temporaire – Carte nationale d’identité ou passeport – Permis de conduire – Permis de conduire europeen et international en cours de validité</p>
+                <h3 class="h5">PAIEMENT : AU DÉPART DE LA LOCATION</h3> 
+                    <p>– Chèque Euros France – Espèces – C.B (Visa / Mastercard / Eurocard) – AMEX</p>
+            </div>             
+        </div>                                             
+    </div>    
+ 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

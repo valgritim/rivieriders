@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Moto;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\MotoSearch;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+
 
 /**
  * @method Moto|null find($id, $lockMode = null, $lockVersion = null)
@@ -36,15 +38,38 @@ class MotoRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Moto
+    /**
+     * Permet de sélectionner toutes les motos ou selon critères du form de recherche
+     * @param $search
+     * @return array
+     */
+    public function findAllQuery(MotoSearch $search): array
     {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $query = $this->createQueryBuilder('m');
+                                                
+        if($search->getCategory()){
+            $query = $query->andWhere('m.category = :category')
+                            ->setParameter('category', $search->getCategory());
+        }
+
+        if($search->getMaxPrice()){
+            $query = $query->andWhere('m.price <= :maxPrice')
+                            ->setParameter('maxPrice', $search->getMaxPrice());
+        }
+
+        if($search->getPassenger()){
+            $query = $query->andWhere('m.passenger = :passenger')
+                            ->setParameter('passenger', $search->getPassenger());
+        }
+
+        if($search->getSaddlebags()){
+            $query = $query->andWhere('m.saddlebags = :saddlebags')
+                            ->setparameter('saddlebags', $search->getSaddlebags());
+        }
+
+         return $query->getQuery()->execute();
     }
-    */
+
+    
+    
 }
