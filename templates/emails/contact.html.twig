@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container">
+    <h1 class="h3">Nouveau message pour la Harley {{ contact.moto.model | upper }}</h1>
+    <p>Une personne souhaiterait obtenir des informations à propos de la harley <a href="{{ url("show_moto", {slug: contact.moto.slug, id : contact.moto.id }) }}"></a></p>
+    <div class="row">
+        <div class="col">Nom : {{ contact.lastname}}</div>
+        <div class="col">Prénom : {{ contact.firstname }}</div>
+    </div>
+    <div class="row">
+        <div class="col">Email: {{ contact.email }}</div>
+        <div class="col">Téléphone : {{ contact.phoneNumber }}</div>
+    </div>
+</div>
+
+{% endblock %}

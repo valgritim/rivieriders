@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Moto;
+use App\Notification\ContactNotification;
+use App\Entity\Contact;
+use App\Form\ContactType;
 use App\Entity\MotoSearch;
 use App\Form\MotoSearchType;
 use App\Repository\MotoRepository;
@@ -31,10 +34,10 @@ class HomeController extends AbstractController
 
     /**
      * retourne une vue du produit cliqué
-     *@Route("/show/{slug}-{id}", name="show_moto", requirements={"slug": "[a-z0-9\-]*"})
+     *@Route("/show/{slug}/{id}", name="show_moto", requirements={"slug": "[a-z0-9\-]*"})
      * @return Response
      */
-    public function show(Moto $moto, $slug)
+    public function show(Moto $moto, $slug, Request $request, ContactNotification $notification)
     {
         if($moto->getSlug() !== $slug){
             return $this->redirectToRoute("show_moto", [
@@ -42,9 +45,25 @@ class HomeController extends AbstractController
                 'slug' => $moto->getSlug()
             ], 301);
         }    
+
+        $contact = new Contact();
+        $contact->setMoto($moto);
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $notification->notify($contact);
+            $this->addFlash("success", "Votre email a bien été envoyé !");
+            return $this->redirectToRoute('show_moto', [                
+                'id' => $moto->getId(),
+                'slug' => $moto->getSlug()
+                 ]);
+        }
        
         return $this->render('home/show.html.twig', [
-            'moto' => $moto
+            'moto' => $moto,
+            'form' => $form->createView()
             
         ]);
     }
